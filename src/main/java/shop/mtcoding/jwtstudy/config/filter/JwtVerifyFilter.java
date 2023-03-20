@@ -40,9 +40,11 @@ public class JwtVerifyFilter implements Filter {
             chain.doFilter(req, resp);
 
         } catch (SignatureVerificationException e) {
+            resp.setStatus(401);
             response.setContentType("text/plain; charset=utf-8");
             response.getWriter().println("로그인 다시!");
         } catch (TokenExpiredException e2) {
+            resp.setStatus(401);
             response.setContentType("text/plain; charset=utf-8");
             response.getWriter().println("로그인 다시!");
 
